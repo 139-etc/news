@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.news.backend_java.repository.UserAccountRepository">
+
+    <select id="findByUserId"
+            parameterType="string"
+            resultType="com.news.backend_java.model.UserAccount">
+
+        SELECT
+            user_id AS userId,
+            user_name AS userName,
+            password,
+            role
+        FROM user_account
+        WHERE user_id = #{userId}
+    </select>
+
+    <insert id="insertUser" parameterType="string">
+    INSERT INTO user_account (
+         user_id, password, user_name, role
+     ) VALUES
+     (#{userId}, #{password}, #{userName}, #{role})
+     ;
+    </insert>
+
+</mapper>
