@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
 
 type RegistRequest = {
-  registUserId: string;
-  registPassword: string;
+  resetUserId: string;
+  resetPassword1: string;
+  resetPassword2: string;
+  email: string;
 }
 
 export async function POST(request: Request) {
@@ -10,7 +12,7 @@ export async function POST(request: Request) {
   const body: RegistRequest = await request.clone().json();
 
   const springResponse = await fetch(
-    `${process.env.SPRING_BOOT_API_BASE_URL}/api/request/regist`,
+    `${process.env.SPRING_BOOT_API_BASE_URL}/api/request/reset`,
     {
       method: 'POST',
       headers: {

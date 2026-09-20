@@ -25,4 +25,11 @@
      ;
     </insert>
 
+    <insert id="resetPassword" parameterType="string">
+    UPDATE user_account 
+    SET password = #{password}
+    WHERE user_id = #{userId}
+     ;
+    </insert>
+
 </mapper>
