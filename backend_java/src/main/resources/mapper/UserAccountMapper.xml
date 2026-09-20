@@ -11,7 +11,6 @@
 
         SELECT
             user_id AS userId,
-            user_name AS userName,
             password,
             role
         FROM user_account
@@ -20,9 +19,9 @@
 
     <insert id="insertUser" parameterType="string">
     INSERT INTO user_account (
-         user_id, password, user_name, role
+         user_id, password, role
      ) VALUES
-     (#{userId}, #{password}, #{userName}, #{role})
+     (#{userId}, #{password}, #{role})
      ;
     </insert>
 
