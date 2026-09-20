@@ -13,6 +13,8 @@ import org.springframework.http.HttpHeaders;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+
+    // ログイン状態を確認
     @GetMapping("/me")
     public ResponseEntity<?> me(Authentication authentication) {
 
@@ -23,6 +25,7 @@ public class AuthController {
         return ResponseEntity.ok().build();
     }
 
+    // ログアウトしてJWT Cookieを削除する
     @PostMapping ("/logout")
     public ResponseEntity<?> logout(Authentication authentication) {
 
@@ -35,6 +38,7 @@ public class AuthController {
                 .maxAge(Duration.ZERO)
                 .build();
 
+        // 削除用のCookieをブラウザに返す
         return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, cookie.toString())
                 .build();

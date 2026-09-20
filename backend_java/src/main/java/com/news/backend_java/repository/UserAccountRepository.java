@@ -8,14 +8,15 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface UserAccountRepository {
 
+        // ユーザIDからユーザ情報を取得する 
     UserAccount findByUserId(
             @Param("userId") String userId
     );
 
+        // 新しいユーザを追加する
     void insertUser(
             @Param("userId") String userId,
             @Param("password") String password,
-            @Param("userName") String userName,
             @Param("role") String role
     );
 }

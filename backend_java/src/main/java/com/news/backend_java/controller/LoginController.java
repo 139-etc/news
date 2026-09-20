@@ -30,9 +30,9 @@ public class LoginController {
 
         this.loginService = loginService;
         this.jwtUtil = jwtUtil;
-
     }
 
+    // ログインリクエストを用いてログイン処理を行う
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(
             @RequestBody LoginRequest request

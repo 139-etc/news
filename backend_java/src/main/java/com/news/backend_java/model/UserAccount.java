@@ -2,9 +2,11 @@ package com.news.backend_java.model;
 
 public class UserAccount {
 
+    // ユーザID
     private String userId;
-    private String userName;
+    // パスワード
     private String password;
+    // 権限
     private String role;
 
     public String getUserId() {
@@ -13,14 +15,6 @@ public class UserAccount {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getPassword() {

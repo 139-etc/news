@@ -42,7 +42,7 @@ public class SecurityConfig {
         .httpBasic(httpBasic -> httpBasic.disable())
         .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers(HttpMethod.POST, "/api/request/login").permitAll()
+            .requestMatchers(HttpMethod.POST, "/api/request/*").permitAll()
             .requestMatchers(HttpMethod.POST, "/api/auth/logout").permitAll()
             .requestMatchers("/h2-console/**").permitAll()
             .anyRequest().authenticated()
@@ -84,8 +84,7 @@ public class SecurityConfig {
         if (repository.findByUserId("system@co.jp") == null) {
             repository.insertUser(
                 "system@co.jp",
-                encoder.encode("password"),
-                "システム管理者",
+                encoder.encode("P@ssw0rd"),
                 "ROLE_ADMIN"
             );
         }
