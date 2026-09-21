@@ -37,6 +37,7 @@ public class ResetService {
                     false,
                     "新しいパスワードと新しいパスワード(確認用)が異なります。"
             );
+        // そうでなければパスワードを更新する
         } else {
             userAccountRepository.resetPassword
                 (request.resetUserId(), request.resetPassword1());
