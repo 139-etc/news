@@ -277,3 +277,626 @@
 .register-link:hover {
   text-decoration: underline;
 }
+
+/* ===== モダンサイドバー ===== */
+
+.sidebar-modern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 18px;
+  box-sizing: border-box;
+}
+
+.sidebar-top {
+  margin-bottom: 32px;
+}
+
+.sidebar-logo {
+  margin: 0;
+  color: #2563eb;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.sidebar-subtitle {
+  margin-top: 4px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: #334155;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-link:hover {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.logout-button {
+  margin-top: auto;
+  width: 100%;
+  height: 44px;
+  border: none;
+  border-radius: 10px;
+  background: #ef4444;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: #dc2626;
+}
+
+/* ===== 親画面設定 ===== */
+.protected-content {
+  margin-left: 220px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* ===== Home画面 ===== */
+
+.home-page {
+  height: calc(100vh - 64px);
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-header {
+  flex-shrink: 0;
+  margin-bottom: 16px;
+}
+
+.home-header h1 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 32px);
+  color: #1e293b;
+}
+
+.home-header p {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: clamp(12px, 1.5vw, 14px);
+}
+
+.feature-grid {
+  flex: 1;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.feature-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px;
+}
+
+.feature-card h3 {
+  margin: 0 0 8px;
+  color: #2563eb;
+  font-size: clamp(15px, 2vw, 18px);
+
+  white-space: nowrap;
+}
+
+.feature-card p {
+  margin: 0;
+  color: #475569;
+  font-size: clamp(11px, 1.5vw, 14px);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* スマホ */
+
+@media (max-width: 768px) {
+
+  .home-page {
+    padding: 12px;
+  }
+
+  .home-header {
+    margin-bottom: 12px;
+  }
+
+  .feature-grid {
+    gap: 8px;
+  }
+
+  .feature-card {
+    padding: 10px;
+  }
+}
+
+/* ======================================
+   ニュース検索画面
+====================================== */
+
+.search-page{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.search-header h1{
+  margin:0;
+  font-size:30px;
+  color:#1e293b;
+}
+
+.search-header p{
+  margin:6px 0 0;
+  color:#64748b;
+  font-size:14px;
+}
+
+/* レイアウト */
+
+.search-layout{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+  align-items:start;
+}
+
+/* 左側 */
+
+.search-filter-card{
+  position:sticky;
+  top:20px;
+}
+
+/* 右側 */
+
+.search-right{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+/* 共通カード */
+
+.search-card{
+  background:#ffffff;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  padding:20px;
+  box-shadow:0 4px 12px rgba(15,23,42,.05);
+}
+
+.search-card h2{
+  margin:0;
+  color:#2563eb;
+}
+
+/* カードヘッダー */
+
+.card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+/* フォーム */
+
+.search-form{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin:18px 0;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.form-group label{
+  font-size:14px;
+  font-weight:600;
+  color:#334155;
+}
+
+.form-group input,
+.form-group select{
+  height:42px;
+  padding:0 12px;
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  box-sizing:border-box;
+  font-size:14px;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+  outline:none;
+  border-color:#2563eb;
+  box-shadow:0 0 0 2px rgba(37,99,235,.12);
+}
+
+/* ボタン */
+
+.primary-button{
+  width:100%;
+  height:44px;
+  border:none;
+  border-radius:10px;
+  background:#2563eb;
+  color:white;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.primary-button:hover{
+  background:#1d4ed8;
+}
+
+.secondary-button{
+  height:36px;
+  padding:0 14px;
+  border:1px solid #2563eb;
+  border-radius:8px;
+  background:white;
+  color:#2563eb;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.secondary-button:hover{
+  background:#eff6ff;
+}
+
+/* 検索結果 */
+
+.result-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.result-card{
+  border:1px solid #e2e8f0;
+  border-radius:10px;
+  padding:14px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.result-card:hover{
+  background:#f8fafc;
+}
+
+.result-card.active{
+  background:#eff6ff;
+  border-color:#2563eb;
+}
+
+.result-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:600;
+}
+
+.result-header span{
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+.result-card p{
+  margin:10px 0 0 28px;
+  color:#475569;
+  line-height:1.6;
+}
+
+/* 要約 */
+
+.summary-area{
+  width:100%;
+  min-height:180px;
+  padding:12px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  resize:vertical;
+  box-sizing:border-box;
+  font-size:14px;
+}
+
+/* スマホ */
+
+@media (max-width:768px){
+
+  .search-layout{
+    grid-template-columns:1fr;
+  }
+
+  .search-filter-card{
+    position:static;
+  }
+
+  .card-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
+  }
+
+  .secondary-button{
+    width:100%;
+  }
+
+}
+
+/* ======================================
+   架空ニュース生成画面
+====================================== */
+
+.fake-create-page{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.fake-create-header h1{
+  margin:0;
+  font-size:30px;
+  color:#1e293b;
+}
+
+.fake-create-header p{
+  margin:6px 0 0;
+  color:#64748b;
+  font-size:14px;
+}
+
+/* 左右レイアウト */
+
+.fake-create-layout{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+  align-items:start;
+}
+
+/* 元ニュースカード */
+
+.fake-create-layout .result-list{
+  margin:18px 0;
+}
+
+/* スマホ */
+
+@media (max-width:768px){
+
+  .fake-create-layout{
+    grid-template-columns:1fr;
+  }
+
+}
+
+/* ======================================
+   架空ニュース表示画面
+====================================== */
+
+.fake-page{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.fake-header h1{
+  margin:0;
+  font-size:30px;
+  color:#1e293b;
+}
+
+.fake-header p{
+  margin:6px 0 0;
+  color:#64748b;
+  font-size:14px;
+}
+
+/* 一覧 */
+
+.fake-list{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+/* カード */
+
+.fake-card{
+  background:#ffffff;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  padding:20px;
+  box-shadow:0 4px 12px rgba(15,23,42,.05);
+  transition:.2s;
+}
+
+.fake-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(37,99,235,.08);
+}
+
+/* 上部 */
+
+.fake-card-header{
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom:12px;
+}
+
+.fake-badge{
+  background:#dbeafe;
+  color:#2563eb;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:600;
+}
+
+/* タイトル */
+
+.fake-card h2{
+  margin:0 0 12px;
+  color:#2563eb;
+  font-size:22px;
+}
+
+/* 本文 */
+
+.fake-card p{
+  margin:0;
+  color:#475569;
+  line-height:1.7;
+  white-space:pre-wrap;
+}
+
+/* スマホ */
+
+@media (max-width:768px){
+
+  .fake-card{
+    padding:16px;
+  }
+
+  .fake-card h2{
+    font-size:18px;
+  }
+
+}
+
+/* ======================================
+   アンケート画面
+====================================== */
+
+.survey-page{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  align-items:center;
+}
+
+.survey-header{
+  width:100%;
+  max-width:1000px;
+}
+
+.survey-header h1{
+  margin:0;
+  font-size:30px;
+  color:#1e293b;
+}
+
+.survey-header p{
+  margin:6px 0 0;
+  color:#64748b;
+  font-size:14px;
+}
+
+/* カード */
+
+.survey-card{
+  width:100%;
+  max-width:1000px;
+  background:#ffffff;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 4px 12px rgba(15,23,42,.05);
+
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* タイトル */
+
+.survey-title h2{
+  margin:0;
+  color:#2563eb;
+}
+
+.survey-title span{
+  color:#64748b;
+  font-size:13px;
+}
+
+/* 入力欄 */
+
+.survey-textarea{
+  width:100%;
+  min-height:300px;
+  padding:16px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  box-sizing:border-box;
+  resize:vertical;
+  font-size:15px;
+  line-height:1.7;
+}
+
+.survey-textarea:focus{
+  outline:none;
+  border-color:#2563eb;
+  box-shadow:0 0 0 2px rgba(37,99,235,.12);
+}
+
+/* スマホ */
+
+@media (max-width:768px){
+
+  .survey-card{
+    max-width:100%;
+    padding:18px;
+  }
+
+  .survey-textarea{
+    min-height:240px;
+  }
+
+}

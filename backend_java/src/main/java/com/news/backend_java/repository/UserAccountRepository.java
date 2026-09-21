@@ -19,4 +19,10 @@ public interface UserAccountRepository {
             @Param("password") String password,
             @Param("role") String role
     );
+
+        // パスワードを更新する
+    void resetPassword(
+        @Param("userId") String resetUserId,
+        @Param("password") String resetPassword1
+    );
 }

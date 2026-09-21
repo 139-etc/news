@@ -10,7 +10,7 @@ function RootLayout({children,}:{children :React.ReactNode;})
 {
     return (
             <html lang='ja' className={cn("font-sans", geist.variable)}>
-                <body className="center">
+                <body className="protected-content">
                     <AuthProvider>
                         {children}
                     </AuthProvider>
