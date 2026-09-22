@@ -35,7 +35,7 @@ function FakeNewsCreate() {
         className="fake-create-layout"
       >
 
-        {/* 左：元ニュース */}
+        {/* 元ニュース */}
 
         <div className="search-card-left">
 
@@ -86,7 +86,7 @@ function FakeNewsCreate() {
 
         </div>
 
-        {/* 右：生成結果 */}
+        {/* 生成結果 */}
 
         <div className="search-card-right">
 
@@ -104,13 +104,21 @@ function FakeNewsCreate() {
 
           </div>
 
+          <h3>タイトル</h3>
+          <textarea
+            rows={1}
+            readOnly
+            name="summaryTitle"
+            className="summary-area-title"
+          />
+
+          <h3>本文</h3>
           <textarea
             rows={20}
             readOnly
-            name="summary"
-            className="summary-area"
+            name="summaryText"
+            className="summary-area-text"
           />
-
         </div>
 
       </form>
