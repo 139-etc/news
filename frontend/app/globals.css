@@ -634,18 +634,7 @@
 
 /* 要約 */
 
-.summary-area-title{
-  width:100%;
-  min-height:100px;
-  padding:12px;
-  border:1px solid #cbd5e1;
-  border-radius:10px;
-  resize:vertical;
-  box-sizing:border-box;
-  font-size:14px;
-}
-
-.summary-area-text{
+.summary-area{
   width:100%;
   min-height:180px;
   padding:12px;
