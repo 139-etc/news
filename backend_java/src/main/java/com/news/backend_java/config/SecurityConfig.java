@@ -50,6 +50,8 @@ public class SecurityConfig {
         .authorizeHttpRequests(auth -> auth
             // /api/request(設定したAPIのリンク)からを全許可
             .requestMatchers(HttpMethod.POST, "/api/request/*").permitAll()
+            // /api/response(設定したAPIのリンク)からを全許可
+            .requestMatchers(HttpMethod.GET, "/api/response/*").permitAll()
             // /api/auth(認証用リンク)からを全許可
             .requestMatchers(HttpMethod.POST, "/api/auth/*").permitAll()
             // 現在H2DBを使用しているので全許可

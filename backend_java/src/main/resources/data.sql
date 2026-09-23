@@ -1,10 +1,37 @@
-/* ユーザー */
--- INSERT INTO user_account (
---     user_id
---   , password
---   , user_name
---   , role
--- ) VALUES
--- ('system@co.jp', '$2a$10$TyUNh8m9FfMpa8xw8S3gMeVUA5yVCwt8IjQyzFymzfsc5zgps4ppi', 'システム管理者', 'ROLE_ADMIN')
--- , ('user@co.jp', '$2a$10$TyUNh8m9FfMpa8xw8S3gMeVUA5yVCwt8IjQyzFymzfsc5zgps4ppi', 'ユーザー1', 'ROLE_GENERAL')
--- ;
+/* コード定義(カテゴリ) */
+INSERT INTO code_category (
+    id,content
+) VALUES
+('00','すべて'),
+('01','政治'),
+('02','外交'),
+('03','紛争'),
+('04','犯罪'),
+('05','経済'),
+('06','金融'),
+('07','医療'),
+('08','科学'),
+('09','テクノロジー'),
+('10','環境'),
+('11','エネルギー'),
+('12','災害'),
+('13','教育'),
+('14','社会'),
+('15','宗教'),
+('16','労働'),
+('17','人権'),
+('18','文化'),
+('19','スポーツ')
+;
+
+/* コード定義(期間) */
+INSERT INTO code_period (
+    id,content
+) VALUES
+('1','過去15分'),
+('2','過去24時間'),
+('3','過去7日'),
+('4','過去2週間'),
+('5','過去3か月'),
+('99','カスタム')
+;

@@ -1,12 +1,43 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 function NewsSearch() {
+
+  type Category = {
+    id: string;
+    content: string;
+  }
+
+  type Period = {
+    id: string;
+    content: string;
+  }
+
+  type SearchResponse = {
+    categoryList: Category[];
+    periodList: Period[];
+  }
+
+  useEffect(() => {
+    const fetchCodes = async () => {
+      const response = await fetch("/api/response/search");
+      const data: SearchResponse = await response.json();
+
+      setCategoryList(data.categoryList);
+      setPeriodList(data.periodList);
+    };
+
+    fetchCodes();
+  },[]);
 
   const [selectedIndex, setSelectedIndex] =
     useState<number | null>(null);
 
+  const [categoryList, setCategoryList] = useState<Category[]>([])
+  const [periodList, setPeriodList] = useState<Period[]>([])
+
+  const [category, setCategory] = useState('');
   const [period, setPeriod] = useState('');
 
   const submitNewsSearch = (
@@ -57,40 +88,25 @@ function NewsSearch() {
 
             <div className="form-group">
               <label>カテゴリ</label>
-              <select name="category">
-                <option value="00">すべて</option>
-                <option value="01">政治</option>
-                <option value="02">外交</option>
-                <option value="03">紛争</option>
-                <option value="04">犯罪</option>
-                <option value="05">経済</option>
-                <option value="06">金融</option>
-                <option value="07">医療</option>
-                <option value="08">科学</option>
-                <option value="09">テクノロジー</option>
-                <option value="10">環境</option>
-                <option value="11">エネルギー</option>
-                <option value="12">災害</option>
-                <option value="13">教育</option>
-                <option value="14">社会</option>
-                <option value="15">宗教</option>
-                <option value="16">労働</option>
-                <option value="17">人権</option>
-                <option value="18">文化</option>
-                <option value="19">スポーツ</option>
+              <select name="category" value={category} onChange={(e) => setCategory(e.target.value)}>
+                <option value="">選択してください</option>
+                {categoryList.map((list) => (
+                  <option key={list.id} value={list.id}>
+                    {list.content}
+                  </option>
+                  ))}
               </select>
             </div>
 
             <div className="form-group">
               <label>期間</label>
               <select name="period" value={period} onChange={(e) => setPeriod(e.target.value)}>
-                <option value="">指定なし</option>
-                <option value="1">過去15分</option>
-                <option value="2">過去24時間</option>
-                <option value="3">過去7日</option>
-                <option value="4">過去2週間</option>
-                <option value="5">過去3か月</option>
-                <option value="99">カスタム</option>
+                <option value="">選択してください</option>
+                {periodList.map((list) => (
+                  <option key={list.id} value={list.id}>
+                    {list.content}
+                  </option>
+                  ))}
               </select>
             </div>
 
@@ -206,11 +222,20 @@ function NewsSearch() {
 
             </div>
 
+            <h3>タイトル</h3>
             <textarea
-              rows={8}
+              rows={2}
               readOnly
               name="summary"
-              className="summary-area"
+              className="summary-area-title"
+            />
+
+            <h3>本文</h3>
+            <textarea
+              rows={20}
+              readOnly
+              name="summary"
+              className="summary-area-text"
             />
 
           </div>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.news.backend_java.repository.CodeRepository">
+
+    <select id="getCategories"
+            resultType="com.news.backend_java.model.code.Category">
+        SELECT
+            id,
+            content
+        FROM code_category
+    </select>
+
+    <select id="getPeriods"
+            resultType="com.news.backend_java.model.code.Period">
+        SELECT
+            id,
+            content
+        FROM code_period
+    </select>
+
+</mapper>
