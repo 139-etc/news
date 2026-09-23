@@ -36,23 +36,34 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
     http
+         // CORSを有効化
         .cors(Customizer.withDefaults())
+        // CSRFを無効化
         .csrf(csrf -> csrf.disable())
-        .formLogin(form -> form.disable())
+        // Spring Bootの標準ログイン画面を非表示        
+        .formLogin(form -> form.disable()) 
+        // ブラウザのID/パスワード入力ダイアログを不使用
         .httpBasic(httpBasic -> httpBasic.disable())
+        // H2コンソール使用のためiframe有効化
         .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
+        // 誰がアクセスできるかを決定
         .authorizeHttpRequests(auth -> auth
+            // /api/request(設定したAPIのリンク)からを全許可
             .requestMatchers(HttpMethod.POST, "/api/request/*").permitAll()
-            .requestMatchers(HttpMethod.POST, "/api/auth/logout").permitAll()
+            // /api/auth(認証用リンク)からを全許可
+            .requestMatchers(HttpMethod.POST, "/api/auth/*").permitAll()
+            // 現在H2DBを使用しているので全許可
             .requestMatchers("/h2-console/**").permitAll()
+            // その他は認証必須＝JWTがないとアクセス不可
             .anyRequest().authenticated()
         );
 
+    // Spring標準の認証より先にJWTを確認
     http.addFilterBefore(
     jwtAuthenticationFilter,
     UsernamePasswordAuthenticationFilter.class);
 
-    // JSESSIONIDの発行抑制
+    // JSESSIONIDを発行しないしセッションを作らない
     http
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
@@ -67,9 +78,13 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration config = new CorsConfiguration();
+    // Next.jsとの通信を許可(ローカル環境なので後で変更)
     config.setAllowedOrigins(List.of("http://127.0.0.1:3000"));
+    // 許可しているHTTPメソッドは以下5種
     config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    // すべてのヘッダーを許可
     config.setAllowedHeaders(List.of("*"));
+    // Cookie送信を許可
     config.setAllowCredentials(true);
 
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -80,7 +95,9 @@ public class SecurityConfig {
     @Bean
     CommandLineRunner init(UserAccountRepository repository, PasswordEncoder encoder) {
     
+        // 初期設定
         return args -> {
+        // 管理者ユーザの設定をする
         if (repository.findByUserId("system@co.jp") == null) {
             repository.insertUser(
                 "system@co.jp",

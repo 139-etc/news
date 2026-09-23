@@ -25,10 +25,11 @@ public class LoginService {
         UserAccount user = userAccountRepository
                 .findByUserId(request.userId());
 
+        // ユーザがない場合
         if (user == null) {
             return new LoginResponse(
                     false,
-                    "ユーザ名またはパスワードが正しくありません。"
+                    "ユーザ名が正しくありません。"
             );
         }
 
@@ -37,10 +38,11 @@ public class LoginService {
                 user.getPassword()
         );
 
+        // ハッシュ化されたパスワードが正しくない場合
         if (!passwordMatches) {
             return new LoginResponse(
                     false,
-                    "ユーザ名またはパスワードが正しくありません。"
+                    "パスワードが正しくありません。"
             );
         }
 

@@ -19,24 +19,27 @@ public class JwtUtil {
             Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
 
     // JWTを生成する
-    public String generateToken(String userId) {
+    public String generateToken(String userId, String role) {
 
         return Jwts.builder()
 
-                // JWTにユーザーIDを保存
-                .subject(userId)
+            // JWTにユーザーIDを保存
+            .subject(userId)
 
-                // 発行時刻
-                .issuedAt(new Date())
+            // 権限をクレームとして保存
+            .claim("role",role)
 
-                // 1時間後に期限切れ
-                .expiration(new Date(System.currentTimeMillis() + 3600000))
+            // 発行時刻
+            .issuedAt(new Date())
 
-                // 秘密鍵で署名
-                .signWith(secretKey)
+            // 1時間後に期限切れ
+            .expiration(new Date(System.currentTimeMillis() + 3600000))
 
-                .compact();
-    }
+            // 秘密鍵で署名
+            .signWith(secretKey)
+
+            .compact();
+        }
 
         // JWTからユーザーIDを取得する
         public String getUserId(String token) {
@@ -49,8 +52,19 @@ public class JwtUtil {
             .getSubject();
         }
 
+        // JWTから権限を取得する
+        public String getRole(String token) {
+
+        return Jwts.parser()
+            .verifyWith(secretKey)
+            .build()
+            .parseSignedClaims(token)
+            .getPayload()
+            .get("role", String.class);
+        }
+
         // JWTが有効か判定する
-public boolean validateToken(String token) {
+    public boolean validateToken(String token) {
 
     try {
         Jwts.parser()

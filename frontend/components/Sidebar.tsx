@@ -9,7 +9,6 @@ function Sidebar() {
 
   const handleLogout = async () => {
     if (confirm("ログアウトしますか？")) {
-      localStorage.removeItem("token")
       await logout()
       router.push("/")
     }
