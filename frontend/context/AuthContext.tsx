@@ -6,7 +6,6 @@ type AuthContextType = {
   isLoading: boolean;
   login: () => Promise<void>;
   logout: () => void;
-  checkAuth: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -20,25 +19,9 @@ export function AuthProvider({
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Spring Bootへ認証状態を問い合わせる
-  const checkAuth = async () => {
-    try {
-      const response = await fetch("/api/auth/me", {
-        credentials: "include", // Cookieを自動送信する
-      });
-
-      setIsLoggedIn(response.ok);
-    } catch {
-      setIsLoggedIn(false);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   // ログイン成功後に認証状態を更新する
   const login = async () => {
     setIsLoggedIn(true);
-    await checkAuth();
   };
 
   // ログアウト時は未ログイン状態に戻す
@@ -54,14 +37,31 @@ const logout = async () => {
     setIsLoading(false);
   }
 };
+
   // アプリ起動時にもCookieを確認する（F5対策）
+  // レンダーのたびに確認
   useEffect(() => {
+    // Spring Bootへ認証状態を問い合わせる
+    const checkAuth = async () => {
+    try {
+      const response = await fetch("/api/auth/me", {
+        credentials: "include", // Cookieを自動送信する
+      });
+
+      setIsLoggedIn(response.ok);
+    } catch {
+      setIsLoggedIn(false);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
     checkAuth();
-  }, []);
+  },[]);
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, isLoading, login, logout, checkAuth }}
+      value={{ isLoggedIn, isLoading, login, logout}}
     >
       {children}
     </AuthContext.Provider>
